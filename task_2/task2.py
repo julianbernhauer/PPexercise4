@@ -11,19 +11,16 @@ def calculate_average(numbers: List[float]) -> float:
     total = sum(numbers)
     return total / len(numbers)
 
-
-def format_name(first_name, last_name):
+def format_name(first_name: str, last_name: str) -> str:
     return f"{last_name.upper()}, {first_name.capitalize()}"
 
-
-def process_data(data):
+def process_data(data: List[int]) -> List[int]:
     if not data:
         return []
     processed = [x * 2 for x in data]
     return processed
 
-
-def get_user_id_from_folder_name(folder_path):
+def get_user_id_from_folder_name(folder_path: Path) -> int:
     assert folder_path.is_dir(), "folder_path must be a directory"
     pattern = re.compile(r"(\d+)_")
     match = pattern.match(folder_path.name)
@@ -32,8 +29,8 @@ def get_user_id_from_folder_name(folder_path):
     return -1
 
 
-def main():
-    names = [("jane", "doe"), ("john", "smith")]
+def main() -> None:
+    names: List[Tuple[str, str]] = [("jane", "doe"), ("john", "smith")]
     formatted_names = [format_name(first, last) for first, last in names]
     print(formatted_names)
 
@@ -44,18 +41,18 @@ def main():
         name_folder = Path(tempdir) / f"{user_id}_{last}_{first}"
         name_folder.mkdir()
         print(f"Created folder: {name_folder}")
-        user_id_inferred = get_user_id_from_folder_name(str(name_folder))
+        user_id_inferred = get_user_id_from_folder_name(name_folder)
         print(f"Extracted user_id: {user_id_inferred}")
 
-    numbers = [2.3, 1-5]
+    numbers: List[float] = [2.3, 1-5]
     average = calculate_average(numbers)
     print(average)
 
-    data = [1, "2", 3]
+    data: List[int] = [1, 2, 3]
     processed_data = process_data(data)
     print(processed_data)
 
-    string_data = "12345"
+    string_data: List[float] = [1.0, 2.0, 3.0, 4.0, 5.0]
     string_average = calculate_average(string_data)
     print(string_average)
 
